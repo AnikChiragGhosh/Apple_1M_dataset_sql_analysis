@@ -1,13 +1,6 @@
 use db_apple
 
--- Apple Retails Millions Rows Sales Schemas
 
--- Please make sure to Import as mentioned below
---1. Import first to Category TABLE
---2. Import to Product Table
---3. Import to Stores Table
---4. Import to Sales TABLE
---5. Import to Warranty Table
 -- DROP TABLE commands in correct order
 DROP TABLE IF EXISTS warranty;
 DROP TABLE IF EXISTS sales;
@@ -80,7 +73,7 @@ from stores
 Group by country
 order by Total_Stores desc;
 
--- What is the total number of units sold by each store?
+--2. What is the total number of units sold by each store?
 select 
 st.store_id,
 st.store_name,
@@ -91,14 +84,14 @@ Group by st.store_id,st.store_name
 order by total_units Desc;
 
 
--- How many sales occurred in December 2023?
+--3. How many sales occurred in December 2023?
 
 SELECT
     COUNT(sale_id) AS total_sales
 FROM sales
 WHERE FORMAT(sale_date, 'MM-yyyy') = '12-2023'
 
--- 4 How many stores have never had a warranty claim filed against any of their products?
+-- 4. How many stores have never had a warranty claim filed against any of their products?
  select * from stores
  where store_id NOT IN(
  						select 
